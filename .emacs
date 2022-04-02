@@ -3,8 +3,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-auto-complete nil)
- '(company-auto-complete-chars '(32 41 46))
  '(company-backends
    '(company-yasnippet company-dabbrev-code company-robe company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
      (company-dabbrev-code company-gtags company-etags company-keywords)
@@ -12,6 +10,8 @@
  '(company-box-doc-delay 0.1)
  '(company-box-icons-alist 'company-box-icons-all-the-icons)
  '(company-idle-delay 0.1)
+ '(company-insertion-on-trigger nil)
+ '(company-insertion-triggers '(32 41 46))
  '(company-lsp-cache-candidates 'auto)
  '(company-minimum-prefix-length 3)
  '(company-tooltip-align-annotations t)
@@ -39,7 +39,7 @@
      ("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(proof-general company-coq merlin-eldoc fish-mode magit corral slime-company js2-mode jsx-mode web-mode tide inf-ruby lsp-treemacs company-lsp lsp-ui lsp-mode ivy doom-modeline rubocop seeing-is-believing ruby-electric ruby-tools yari company-box doom-themes company-quickhelp flycheck-rtags cpputils-cmake lsp-haskell skewer-mode emmet-mode ccls lsp-ui-peek lsp-ui-sideline cmake-mode flymake-hlint intero hasktags helm-lsp mode-icons hindent rvm robe projectile enh-ruby-mode cmake-ide protobuf-mode flycheck-ocaml irony-eldoc flymake-yaml flycheck-yaml yaml-mode flycheck-yamllint highlight-indent-guides smart-cursor-color multiple-cursors company-lua lua-mode flymake-lua highlight-symbol rainbow-delimiters counsel monokai-theme neotree clang-format moonscript haskell-mode company-irony flycheck-irony flycheck irony utop tuareg emojify all-the-icons powerline elpy color-identifiers-mode all-the-icons-dired yasnippet-snippets yasnippet paradox smartparens line-number-display-width display-line-numbers-mode company company-mode smex use-package)))
+   '(wakatime-mode spinner markdown-preview-eww markdown-mode python slime eldoc flymake dash diff-hl paren hl-line proof-general company-coq merlin-eldoc fish-mode magit corral slime-company js2-mode jsx-mode web-mode tide inf-ruby lsp-treemacs company-lsp lsp-ui lsp-mode ivy doom-modeline rubocop seeing-is-believing ruby-electric ruby-tools yari company-box doom-themes company-quickhelp flycheck-rtags cpputils-cmake lsp-haskell skewer-mode emmet-mode ccls lsp-ui-peek lsp-ui-sideline cmake-mode flymake-hlint intero hasktags helm-lsp mode-icons hindent rvm robe projectile enh-ruby-mode cmake-ide protobuf-mode flycheck-ocaml irony-eldoc flymake-yaml flycheck-yaml yaml-mode flycheck-yamllint highlight-indent-guides smart-cursor-color multiple-cursors company-lua lua-mode flymake-lua highlight-symbol rainbow-delimiters counsel monokai-theme neotree clang-format moonscript haskell-mode company-irony flycheck-irony flycheck irony utop tuareg emojify all-the-icons powerline elpy color-identifiers-mode all-the-icons-dired yasnippet-snippets yasnippet paradox smartparens line-number-display-width display-line-numbers-mode company company-mode smex use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -49,7 +49,7 @@
 
 (setq user-full-name "pe200012")
 (setq user-mail-address "1326263755@qq.com")
-(require 'cl-lib)
+;; (require 'cl-lib)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
@@ -59,11 +59,11 @@
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
-
+(set-fontset-font t nil (font-spec :size 20 :name "Source Hans Sans SC"))
 (add-to-list 'default-frame-alist
-	     '(font . "Iosevka Moe-12"))
+	     '(font . "Iosevka Moe-11"))
 (require 'package)
-(package-initialize)
+;; (package-initialize)
 (setq wakatime-api-key "b5490808-fa87-460d-b8a8-aa2fa4cf7696")
 (setq wakatime-cli-path "/home/pe200012/.wakatime/wakatime-cli-linux-amd64")
 (load "~/.emacs-packages.el")

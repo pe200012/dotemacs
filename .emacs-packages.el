@@ -25,21 +25,21 @@
       (leaf-keywords-init)))
 ;; </leaf-install-code>
 
+(leaf feather
+    :el-get conao3/feather.el
+    :config
+    (feather-mode))
+(defcustom leaf-alias-keyword-alist '((:ensure . :feather))
+  "The alias keyword.  KEY is treated as an alias for VALUE."
+  :type 'sexp
+  :group 'leaf)
+
 (leaf leaf-tree :ensure t)
 (leaf leaf-convert :ensure t)
 (leaf transient-dwim
     :ensure t
     :bind (("M-=" . transient-dwim-dispatch)))
 
-(leaf feather
-    :el-get conao3/feather.el
-    :config
-    (feather-mode))
-
-(defcustom leaf-alias-keyword-alist '((:ensure . :feather))
-  "The alias keyword.  KEY is treated as an alias for VALUE."
-  :type 'sexp
-  :group 'leaf)
 
 ;;; Packages
 ;; ===== Appearance =====
@@ -89,6 +89,25 @@
 (leaf color-identifiers-mode
     :ensure t
     :hook (after-init-hook . global-color-identifiers-mode))
+(leaf hl-line
+    :ensure t
+    :hook (after-init-hook . global-hl-line-mode))
+(leaf paren
+    :ensure t
+    :hook (after-init-hook . show-paren-mode)
+    :custom
+    (show-paren-when-point-inside-paren . t)
+    (show-paren-when-point-in-periphery . t))
+'(leaf hl-todo
+    :ensure t
+    :hook (prog-mode-hook . global-hl-todo-mode))
+(leaf diff-hl
+    :ensure t
+    :hook ((dired-mode-hook . diff-hl-dired-mode-unless-remote)
+	   (after-init-hook . global-diff-hl-mode))
+    :config
+    (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 (leaf rainbow-delimiters
     :ensure t
     :hook (prog-mode-hook . rainbow-delimiters-mode))
@@ -115,6 +134,7 @@
 (leaf company
     :ensure t
     :config
+    (setq lsp-completion-provider :capf)
     (global-company-mode))
 (leaf yasnippet
     :ensure t
@@ -164,15 +184,6 @@
 	   (c-mode-hook       . lsp-ui-mode)))
 (leaf lsp-ui-sideline)
 (leaf lsp-ui-peek)
-(leaf company-lsp
-    :ensure t
-    :hook ((lsp-mode-hook . company-lsp))
-    :config
-    (push 'company-lsp company-backends)
-    (setq company-lsp-cache-candidates 'auto)
-    (setq company-lsp-async t)
-    (setq company-lsp-enable-snippet t)
-    (setq company-lsp-enable-recompletion t))
 (leaf lsp-treemacs
     :ensure t
     :commands lsp-treemacs-errors-list)
@@ -180,6 +191,14 @@
     :ensure t
     :commands helm-lsp-workspace-symbol)
 (leaf company-quickhelp
+    :ensure t)
+
+;; ~~~ Org ~~~
+(leaf org-mode
+    :ensure t
+    :config
+    (setq org-pretty-entities t))
+(leaf org-babel
     :ensure t)
 
 ;; ~~~ Common Lisp ~~~
